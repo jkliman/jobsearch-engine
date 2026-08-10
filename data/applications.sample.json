@@ -1,0 +1,7 @@
+[
+  {"market": "Data & AI Platform",        "role": "Solutions Architect",          "status": "Applied", "fit": 85},
+  {"market": "Healthcare & Insurance",    "role": "VP, AI Strategy & Enablement",  "status": "Applied", "fit": 85},
+  {"market": "Restaurant SaaS",           "role": "Director, Data Platform Eng",   "status": "Applied", "fit": 90},
+  {"market": "Cybersecurity",             "role": "Director, AI Platform Eng",     "status": "Applied", "fit": 85},
+  {"market": "Fintech & Payments",        "role": "VP, AI & Data Strategy",        "status": "Applied", "fit": 74}
+]

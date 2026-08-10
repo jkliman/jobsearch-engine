@@ -1,0 +1,12 @@
+# never commit the full-detail private data
+data/applications.private.json
+data/connections*.csv
+data/*.private.*
+*.private.html
+
+# generated anonymized deploy build (rebuilt by deploy/build_public.py)
+public/
+.DS_Store
+node_modules/
+*.log
+.env
