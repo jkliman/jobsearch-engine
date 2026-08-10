@@ -195,7 +195,7 @@
       <div class="inner">
         <div class="face front">
           <button class="flipbtn" data-flip="flipTracker">&lt;/&gt; View code</button>
-          <div class="codehdr mono" style="margin-bottom:12px">Pipeline — <span id="trackerCount"></span> roles · <span id="trackerMode"></span></div>
+          <div class="codehdr mono" style="margin-bottom:12px">Pipeline — <span id="trackerCount"></span> roles</div>
           <div class="tblscroll">
             <table><thead><tr><th id="thco">Company</th><th>Role</th><th>Comp</th><th>Status</th><th>Fit</th></tr></thead>
             <tbody id="trackerBody"></tbody></table>
@@ -310,9 +310,6 @@
         <a class="repo-btn" id="repoFoot" href="#" target="_blank" rel="noopener">★ GitHub repo</a>
         <a class="cta" href="mailto:jkliman@gmail.com">Get in touch →</a>
       </div>
-    </div>
-    <div style="margin-top:22px;font-size:.8rem;color:var(--muted)">
-      Hosted on AWS (S3 + CloudFront). Public view genericizes companies to industries and hides compensation and contact identities. The full-detail version stays private.
     </div>
   </footer>
 </div>
@@ -474,9 +471,6 @@ function renderTracker(){
   const priv = MODE==="private";
   thco.textContent = priv ? "Company" : "Industry / Market";
   trackerCount.textContent = APPS.length;
-  trackerMode.innerHTML = priv
-    ? '<span style="color:var(--coral)">private view · full detail</span>'
-    : '<span style="color:var(--teal)">public view · genericized</span>';
   trackerBody.innerHTML = APPS.map(a=>{
     const who = priv ? a.co : a.mkt;
     const comp = priv ? (a.sal==="—"?'<span class="conf">n/d</span>':a.sal)
@@ -538,25 +532,21 @@ function renderNet(){
       <div class="bv">${v}</div></div>`).join("");
   const inds = s.industries.map(([k,v])=>`<span style="display:inline-block;background:#0a0d1c;border:1px solid var(--line);border-radius:20px;padding:3px 11px;font-size:.78rem;margin:3px 5px 0 0">${k} · <b>${v}</b></span>`).join("");
   netExample.innerHTML =
-     `<div class="codehdr mono" style="margin-bottom:10px">Real network — <span style="color:var(--teal)">anonymized aggregates</span> (counts only, no names)</div>`
-   + `<div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px">
+     `<div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px">
         ${mini(s.total,"connections in my network")}
         ${mini(s.atHiring,"at companies hiring for a fit")}
         ${mini(s.warm,"top warm paths surfaced")}
         ${mini(s.recruiters,"recruiters in-network")}
       </div>`
    + `<div style="font-size:.82rem;color:var(--muted);margin:0 0 6px">Seniority of contacts at hiring companies</div>${bars}`
-   + `<div style="font-size:.82rem;color:var(--muted);margin:14px 0 4px">Where the warm paths concentrate (by industry)</div><div>${inds}</div>`
-   + `<p style="color:var(--muted);font-size:.8rem;margin-top:12px">${priv
-        ? "🔒 Private build: the full ranked contact list with names lives in the separate war-room file — never in this page's source."
-        : "🌐 Public build: only aggregate counts are computed and rendered — individual names and employers are never emitted to this page."}</p>`;
+   + `<div style="font-size:.82rem;color:var(--muted);margin:14px 0 4px">Where the warm paths concentrate (by industry)</div><div>${inds}</div>`;
   requestAnimationFrame(()=>document.querySelectorAll("#netExample .bf").forEach(f=>f.style.width=f.dataset.w));
 }
 
 function renderMode(){
   const priv = MODE==="private";
-  heroPriv.innerHTML = "🌐 Public build: companies shown as industries, compensation hidden, contacts anonymized.";
-  footPriv.textContent = "Public view — shareable.";
+  heroPriv.innerHTML = "";
+  footPriv.textContent = "";
   renderTracker(); renderNet();
 }
 
